@@ -1,3 +1,4 @@
+from collections import deque
 file = open('input.txt','r')
 output = open('output.txt', 'w')
 dirpat = open('ditpath.txt', 'w')
@@ -19,6 +20,23 @@ for i in range(n):
 # for i,j in heuristics.items():
 #    output.write(f"{i}: {j}\n")
 # output.write(f"{heuristics}")
+def dfs(path,root,goal):
+   visited = set()
+   q = deque([root])
+   while q:
+      v = q.popleft()
+      visited.add(v)
+      if v == goal:   
+         return v
+      else:
+         for i in path.values():
+            for j in i:
+               if j not in visited:
+                  q.append(j)
+   print(visited)
+      
 
-print(heuristics)
-         
+dfs(path,"Arad","Sibiu")
+
+
+# print(heuristics)
