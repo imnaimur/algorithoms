@@ -20,7 +20,10 @@ output.write(f"{heuristics}\n")
 
 def a_star(graph, heuristics, source, destination):
    pq = [[heuristics[source],0, source]]
-   cost = {node: float('inf') for node in graph}
+   cost = {}
+   for v in graph:
+      cost[v] = float('inf')
+
    cost[source] = 0
    parent = {}
 
