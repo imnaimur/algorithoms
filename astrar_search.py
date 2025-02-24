@@ -1,42 +1,63 @@
-from collections import deque
-file = open('input.txt','r')
+import heapq
+file = open('input.txt', 'r')
 output = open('output.txt', 'w')
 dirpat = open('ditpath.txt', 'w')
 
 heuristics = {}
-path = {}
-n = 20
-
+path = {} 
+n = 20  
 for i in range(n):
    temp = {}
    line = file.readline().split()
    heuristics[line[0]] = int(line[1])
    for j in range(2,len(line),2):
-     temp[line[j]] = line[j+1]
+     temp[line[j]] = int(line[j+1])
    path[line[0]] = temp
 
-# dirpat.write(f"{path}")
 
-# for i,j in heuristics.items():
-#    output.write(f"{i}: {j}\n")
-# output.write(f"{heuristics}")
-def dfs(path,root,goal):
-   visited = set()
-   q = deque([root])
-   while q:
-      v = q.popleft()
-      visited.add(v)
-      if v == goal:   
-         return v
-      else:
-         for i in path.values():
-            for j in i:
-               if j not in visited:
-                  q.append(j)
-   print(visited)
-      
+dirpat.write(f"{path}\n")
+output.write(f"{heuristics}\n")
 
-dfs(path,"Arad","Sibiu")
+def a_star(graph, heuristics, source, destination):
+   pq = [[heuristics[source],0, source]]
+   cost = {node: float('inf') for node in graph}
+   cost[source] = 0
+   parent = {}
+
+   while pq:
+      s = heapq.heappop(pq)
+      fn,acost,v = s[0],s[1],s[2]
+      if v == destination:
+         path = []
+         while v in parent:
+            path.append(v)
+            v = parent[v]
+         path.append(source)
+         path.reverse()
+         return path, cost[destination]
+
+      for vertex, edge in graph[v].items():
+         ncost = acost + edge 
+         nfn = ncost + heuristics[vertex]  
+            
+         if nfn < cost[vertex]+heuristics[vertex]:
+            cost[vertex] = ncost
+            parent[vertex] = v
+            heapq.heappush(pq, [nfn, ncost, vertex])
+
+   return None, float('inf')
 
 
-# print(heuristics)
+
+start_node = 'Sibiu'
+goal_node = 'Bucharest'
+way, distance = a_star(path, heuristics, start_node, goal_node)
+
+print("Path",end=":")
+for i in range(len(way)):
+   if i != len(way) - 1:
+      print(way[i],end=" --> ")
+   else:
+       print(way[i])
+
+print(f"Total Distance: {distance} km")
