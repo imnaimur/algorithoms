@@ -1,0 +1,21 @@
+Q1: In the first problem, will the stronger player always win? Does having the first move matter? First
+come up with an answer through reasoning only. Then run the algorithm with several inputs and
+see what happens.
+
+Answer: No its not necessary that the first player will always win.Because there is an uncertainity because of the random value in the utility function.Having the first move matter because the first player can take the winning path first.
+
+Q2: In the first problem, the utility function includes a random component. Do you think it is a wise
+choice? Why or why not? How much can the random factor affect the outcomes?
+
+Answer: Well, It is wise choice.Because the outcomes are uncertain which is similar to real world.The random factor affect quite a bit because it doesn't let us predict the exact outcomes
+
+Q3: Consider the implications of increasing the game tree depth or changing the branching factor. How
+would these changes affect the performance of the alpha-beta pruning algorithm and the accuracy
+of the final outcome?
+
+Answer:  We know the runtime is O(b^d) where b is branching factor and d is depth.so the runtime will increase and the performance will become slower.but the more state we have,we can predict the nearest result of the actual outcome mean high accuracy.
+
+Q4: In minimax algorithms, is the first player always a maximizer? Can you think of any scenario where
+it will not be the case?
+
+Answer: If we we reverse the minimax algorithm then the first player could be a minimizer.In tic-tac-toe the first 

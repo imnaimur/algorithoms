@@ -1,1 +1,0 @@
-{'Arad': 366, 'Craiova': 160, 'Eforie': 161, 'Fagaras': 176, 'Giurgiu': 77, 'Mehadia': 241, 'Neamt': 234, 'Sibiu': 253, 'Oradea': 380, 'Pitesti': 100, 'RimnicuVilcea': 193, 'Dobreta': 242, 'Hirsova': 151, 'lasi': 226, 'Lugoj': 244, 'Timisoara': 329, 'Urziceni': 80, 'Vaslui': 199, 'Zerind': 374, 'Bucharest': 0}
